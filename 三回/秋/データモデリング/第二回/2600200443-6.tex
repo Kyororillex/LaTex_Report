@@ -1,0 +1,198 @@
+\documentclass[dvipdfmx,autodetect-engine,titlepage]{jsarticle}
+\usepackage[dvipdfm]{graphicx}
+\usepackage{ascmac}
+\usepackage{fancybox}
+\usepackage{listings}
+\usepackage{plistings}
+\usepackage{itembkbx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{svg}
+\usepackage{url}
+\usepackage{graphics}
+\usepackage{multirow}
+\usepackage{listings,jvlisting}
+
+\textheight=23cm
+\renewcommand{\figurename}{図}
+\renewcommand{\tablename}{表}
+\newenvironment{code}
+{\vspace{0.5zw}\VerbatimEnvironment  
+\begin{screen} 
+\baselineskip=1.0\normalbaselineskip
+ \begin{Verbatim}}
+{\end{Verbatim}
+\baselineskip=\normalbaselineskip
+ \end{screen}\vspace{0.5zw}} 
+
+\title{情報理工学部　SNコース 3回\\
+第二回レポート(固有値,固有ベクトル)\\}
+\author{2600200443-6\\Yamashita Kyohei\\山下 恭平}
+\date{Oct 23 2022}
+
+\begin{document}
+
+\maketitle
+
+\section*{問題}
+
+\begin{align*}
+  A
+    &=
+  \begin{pmatrix}
+    1 & 2 \\
+    2 & -2 
+  \end{pmatrix}
+\end{align*}
+
+の時以下の問いに答えよ
+
+\subsection*{問1 対称行列Aの固有値\begin{math}\alpha,\beta \end{math}を求めよ}
+
+\begin{align*}
+ det
+  \begin{pmatrix}
+    1-\lambda & 2 \\
+    2 & -2-\lambda 
+  \end{pmatrix}
+  &= 0 \\
+  (1-\lambda)(-2-\lambda)-4 &= 0\\
+  \lambda^2 + \lambda -6 &= 0 \\
+  (\lambda+3)(\lambda-2) &= 0\\
+  \lambda = 2,-3
+\end{align*}
+よって
+\begin{align*}
+  \alpha,\beta &= 2 , -3
+ \end{align*}
+
+\subsection*{問2 固有値に対応する,大きさ1のベクトルを求めよ}
+
+\begin{math}
+  \lambda = \alpha = 2
+\end{math} 
+の時,固有ベクトルは
+\begin{align*}
+  \begin{pmatrix}
+    -1 & 2 \\
+    2 & -4
+  \end{pmatrix}
+  \begin{pmatrix}
+    x_1 \\
+    x_2
+  \end{pmatrix}
+  =
+  \overrightarrow{0}\\\\
+  x_1 = 2x_2
+\end{align*}
+となるので,大きさ1の固有ベクトルは
+\begin{align}
+  \overrightarrow{e_1} =   \begin{pmatrix}
+    \frac{2\sqrt{5} }{5} \\
+    \frac{\sqrt{5}}{5}
+  \end{pmatrix}
+\end{align}
+
+\begin{math}
+  \lambda = \beta = -3
+\end{math} 
+の時,固有ベクトルは
+\begin{align*}
+  \begin{pmatrix}
+    4 & 2 \\
+    2 & 1
+  \end{pmatrix}
+  \begin{pmatrix}
+    x_1 \\
+    x_2
+  \end{pmatrix}
+  =
+  \overrightarrow{0}\\\\
+  x_1 = -\frac{1}{2}x_2
+\end{align*}
+となるので,大きさ1の固有ベクトルは
+\begin{align}
+  \overrightarrow{e_2} =   \begin{pmatrix}
+    \frac{\sqrt{5}}{5} \\
+    -\frac{2\sqrt{5} }{5}
+  \end{pmatrix}
+\end{align}
+
+\subsection*{問3 固有ベクトルが直行しているこを示せ}
+
+\begin{align*}
+  \overrightarrow{e_1}\cdot \overrightarrow{e_2} &= \frac{2\sqrt{5} }{5}\cdot \frac{\sqrt{5}}{5} - \frac{\sqrt{5}}{5} \cdot \frac{2\sqrt{5} }{5}\\
+  &=0
+\end{align*}
+
+よって直行
+
+\subsection*{問4 大きさ1の固有ベクトル正規直交行列をPとする.\\\\
+\begin{math}P^{-1}AP =  \begin{pmatrix}
+  \alpha  & 0 \\
+  0 & \beta  
+\end{pmatrix}\end{math}となることを示せ}
+
+\begin{align*}
+  P =   \begin{pmatrix}
+    \frac{2\sqrt{5}}{5} & \frac{\sqrt{5}}{5} \\
+    \frac{\sqrt{5}}{5} & \frac{-2\sqrt{5}}{5}
+  \end{pmatrix}
+\end{align*}
+この時
+\begin{align*}
+  P^{-1} &=   
+  \begin{pmatrix}
+    \frac{2\sqrt{5}}{5} & \frac{\sqrt{5}}{5} \\
+    \frac{\sqrt{5}}{5} & \frac{-2\sqrt{5}}{5}
+  \end{pmatrix}
+\end{align*}
+
+よって
+
+\begin{align}
+  P^{-1}AP &=  
+  \begin{pmatrix}
+    \alpha  & 0 \\
+    0 & \beta  
+  \end{pmatrix}\notag\\
+  PP^{-1}APP^{-1} &= P
+  \begin{pmatrix}
+    2  & 0 \\
+    0 & -3  
+  \end{pmatrix}
+  P^{-1}\notag\\
+  A &= 
+  \begin{pmatrix}
+    \frac{2\sqrt{5}}{5} & \frac{\sqrt{5}}{5} \\
+    \frac{\sqrt{5}}{5} & \frac{-2\sqrt{5}}{5}
+  \end{pmatrix}
+  \begin{pmatrix}
+    2  & 0 \\
+    0 & -3  
+  \end{pmatrix}
+  \begin{pmatrix}
+    \frac{2\sqrt{5}}{5} & \frac{\sqrt{5}}{5} \\
+    \frac{\sqrt{5}}{5} & \frac{-2\sqrt{5}}{5}
+  \end{pmatrix}\notag\\
+  &=
+  \begin{pmatrix}
+    \frac{4\sqrt{5}}{5} & \frac{-3\sqrt{5}}{5} \\
+    \frac{2\sqrt{5}}{5} & \frac{6\sqrt{5}}{5}
+  \end{pmatrix}
+  \begin{pmatrix}
+    \frac{2\sqrt{5}}{5} & \frac{\sqrt{5}}{5} \\
+    \frac{\sqrt{5}}{5} & \frac{-2\sqrt{5}}{5}
+  \end{pmatrix}\notag\\
+  &=
+  \begin{pmatrix}
+    1 & 2 \\
+    2 & -2 
+  \end{pmatrix}
+  =(左辺)
+\end{align}
+
+題意は示された
+
+\end{document}

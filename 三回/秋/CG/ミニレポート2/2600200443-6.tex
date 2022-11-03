@@ -1,0 +1,56 @@
+\documentclass[dvipdfmx,autodetect-engine,titlepage]{jsarticle}
+\usepackage[dvipdfm]{graphicx}
+\usepackage{ascmac}
+\usepackage{fancybox}
+\usepackage{listings}
+\usepackage{plistings}
+\usepackage{itembkbx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{svg}
+\usepackage{url}
+\usepackage{graphics}
+\usepackage{multirow}
+\usepackage{listings,jvlisting}
+
+\textheight=23cm
+\renewcommand{\figurename}{図}
+\renewcommand{\tablename}{表}
+\newenvironment{code}
+{\vspace{0.5zw}\VerbatimEnvironment  
+\begin{screen} 
+\baselineskip=1.0\normalbaselineskip
+ \begin{Verbatim}}
+{\end{Verbatim}
+\baselineskip=\normalbaselineskip
+ \end{screen}\vspace{0.5zw}} 
+
+\title{情報理工学部　SNコース 3回\\
+第二回ミニレポート\\}
+\author{2600200443-6\\Yamashita Kyohei\\山下 恭平}
+\date{Oct 28 2022}
+
+\begin{document}
+
+\maketitle
+
+\section*{問題}
+視点座標から2次元スクリーン座標へのx座標の変換式で，簡単のため，d=1の時,
+2点間のスクリーン座標での距離を求めて、表にまとめよ
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|c|c|c|c|}
+  \hline
+  z\textbackslash{} & (\begin{math}xs_1 , ys_1\end{math}) & (\begin{math}xs_2 , ys_2\end{math}) & 2点の距離   \\ \hline
+  2                 & (1/2 , 0)       & (1 , 0)         & 1/2  \\ \hline
+  4                 & (1/4 , 0)       & (1/2 , 0)       & 1/4  \\ \hline
+  6                 & (1/6 , 0)       & (1/3 , 0)       & 1/6  \\ \hline
+  8                 & (1/8 , 0)       & (1/4 , 0)       & 1/8  \\ \hline
+  10                & (1/10 , 0)      & (1/5 , 0)       & 1/10 \\ \hline
+  \end{tabular}
+  \end{table}
+
+
+
+\end{document}

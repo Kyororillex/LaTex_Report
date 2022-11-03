@@ -1,0 +1,91 @@
+\documentclass[dvipdfmx,autodetect-engine,titlepage]{jsarticle}
+\usepackage[dvipdfm]{graphicx}
+\usepackage{ascmac}
+\usepackage{fancybox}
+\usepackage{listings}
+\usepackage{plistings}
+\usepackage{itembkbx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{svg}
+\usepackage{url}
+\usepackage{graphics}
+\usepackage{multirow}
+\usepackage{listings,jvlisting}
+
+\textheight=23cm
+\renewcommand{\figurename}{図}
+\renewcommand{\tablename}{表}
+\newenvironment{code}
+{\vspace{0.5zw}\VerbatimEnvironment  
+\begin{screen} 
+\baselineskip=1.0\normalbaselineskip
+ \begin{Verbatim}}
+{\end{Verbatim}
+\baselineskip=\normalbaselineskip
+ \end{screen}\vspace{0.5zw}} 
+
+\title{情報理工学部　SNコース 3回\\
+コンピュータグラフィックス(Q)\\
+ミニレポート1\\}
+\author{2600200443-6\\Yamashita Kyohei\\山下 恭平}
+\date{Oct 14 2022}
+
+\begin{document}
+
+\maketitle
+
+\subsection*{問1 考えてみよう(4)}
+
+長方形の面積を求めれば良いので.
+
+\begin{align}
+  \begin{bmatrix}
+    2 & 0 & 0 & 0 \\
+    0 & 2 & 0 & 0 \\
+    2 & 0 & 2 & 10 \\
+    2 & 0 & 0 & 1 \\ 
+  \end{bmatrix}
+  \begin{bmatrix}
+    1 \\
+    0 \\
+    0 \\
+    1 \\
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+    2 \\
+    0 \\
+    10 \\
+    1 \\
+  \end{bmatrix}
+\end{align}
+
+\subsection*{問2 考えてみよう(5)}
+
+
+\begin{align}
+  \begin{bmatrix}
+    2 & 0 & 0 & 0 \\
+    0 & 2 & 0 & 0 \\
+    2 & 0 & 2 & 20 \\
+    2 & 0 & 0 & 1 \\ 
+  \end{bmatrix}
+  \begin{bmatrix}
+    1 \\
+    0 \\
+    0 \\
+    1 \\
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+    2 \\
+    0 \\
+    20 \\
+    1 \\
+  \end{bmatrix}
+\end{align}
+
+
+\end{document}
