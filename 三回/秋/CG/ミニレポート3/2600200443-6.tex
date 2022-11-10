@@ -1,0 +1,63 @@
+\documentclass[dvipdfmx,autodetect-engine,titlepage]{jsarticle}
+\usepackage[dvipdfm]{graphicx}
+\usepackage{ascmac}
+\usepackage{fancybox}
+\usepackage{listings}
+\usepackage{plistings}
+\usepackage{itembkbx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{svg}
+\usepackage{url}
+\usepackage{graphics}
+\usepackage{multirow}
+\usepackage{listings,jvlisting}
+
+\textheight=23cm
+\renewcommand{\figurename}{図}
+\renewcommand{\tablename}{表}
+\newenvironment{code}
+{\vspace{0.5zw}\VerbatimEnvironment  
+\begin{screen} 
+\baselineskip=1.0\normalbaselineskip
+ \begin{Verbatim}}
+{\end{Verbatim}
+\baselineskip=\normalbaselineskip
+ \end{screen}\vspace{0.5zw}} 
+
+\title{情報理工学部　SNコース 3回\\
+第3回ミニレポート\\}
+\author{2600200443-6\\Yamashita Kyohei\\山下 恭平}
+\date{Nov 10 2022}
+
+\begin{document}
+
+\maketitle
+
+\section*{問題}
+xy 平面 (平面z=0)上にある正三角形ABC の頂点座標が，それぞれ，\begin{math}
+A(0,0,0)\,B(1,0,0)\,C(\frac{1}{2},\frac{\sqrt{3}}{2},0)\end{math}
+であるとする.位置ベクトルの平均として重心\begin{math}G(x_{G},y_{G},z_{G})\end{math}
+を求め,それが中学/高校で習った重心と一致することを確かめよ.
+
+\section*{回答}
+重心Gは
+\begin{align}
+  x_{G} &= \frac{0 + 1 + \frac{1}{2}}{3} = \frac{1}{2}\notag\\
+  y_{G} &= \frac{0 + 0 + \frac{\sqrt{3}}{2}}{3} = \frac{\sqrt{3}}{6}\notag\\
+  z_{G} &= 0\notag\\\notag\\
+  G &= (\frac{1}{2},\frac{\sqrt{3}}{6},0)
+\end{align}
+
+ここで,点Cからx軸に向かって下ろした垂線の足を点Dとすると点Dの座標は
+\begin{math}D(0,\frac{1}{2},0)\end{math}となる.この時,線分CDは
+三角形ABCの中線であるので,これを2:1に内分する点をEとすると
+\begin{align}
+  E &= (\frac{\frac{1}{2} + 2\times\frac{1}{2}}{2+1} , \frac{\frac{\sqrt{3}}{2}}{2+1})\notag\\
+    &= (\frac{1}{2} , \frac{\sqrt{3}}{6})
+\end{align}
+
+(2) = (1) より,重心は一致.
+
+\end{document}
