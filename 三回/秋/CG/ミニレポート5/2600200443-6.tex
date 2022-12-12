@@ -1,0 +1,67 @@
+\documentclass[dvipdfmx,autodetect-engine,titlepage]{jsarticle}
+\usepackage[dvipdfm]{graphicx}
+\usepackage{ascmac}
+\usepackage{fancybox}
+\usepackage{listings}
+\usepackage{plistings}
+\usepackage{itembkbx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{svg}
+\usepackage{url}
+\usepackage{graphics}
+\usepackage{multirow}
+\usepackage{listings,jvlisting}
+
+\textheight=23cm
+\renewcommand{\figurename}{図}
+\renewcommand{\tablename}{表}
+\newenvironment{code}
+{\vspace{0.5zw}\VerbatimEnvironment  
+\begin{screen} 
+\baselineskip=1.0\normalbaselineskip
+ \begin{Verbatim}}
+{\end{Verbatim}
+\baselineskip=\normalbaselineskip
+ \end{screen}\vspace{0.5zw}} 
+
+\title{情報理工学部　SNコース 3回\\
+第5回ミニレポート\\}
+\author{2600200443-6\\Yamashita Kyohei\\山下 恭平}
+\date{Dec 8 2022}
+
+\begin{document}
+
+\maketitle
+
+\section*{問題}
+半径 r, 中心の位置ベクトルCの球とレイの交点の求め方を,
+数式を使って説明せよ
+
+\section*{回答}
+
+九の方程式と、直線の式を連立すると
+
+\begin{align*}
+  | \mathbf{P} -\mathbf{C}  \vert ^2 &= r^2\\
+  (\mathbf{P} -\mathbf{C} )\cdot (\mathbf{P} -\mathbf{C} ) &= r^2 \\
+  (\mathbf{P} _E + t\mathbf{e} - \mathbf{C}) \cdot (\mathbf{P} _E + t\mathbf{e} - \mathbf{C}) &= r^2\\
+  t^2 + 2\mathbf{e}\cdot(\mathbf{P}_E - \mathbf{C})t + (\mathbf{P}_E - \mathbf{C})\cdot(\mathbf{P}_E - \mathbf{C}) - r^2 &= 0\\
+\end{align*}
+
+ここで\begin{math}b = \mathbf{e}\cdot(\mathbf{P}_E - \mathbf{C}) , c = (\mathbf{P}_E - \mathbf{C})\cdot(\mathbf{P}_E - \mathbf{C}) - r^2\end{math}とすると
+
+\begin{align*}
+  t^2 + 2bt + c &= 0\\
+  t = -b \pm \sqrt{b^2 - c}
+\end{align*}
+
+よって、\begin{math}b^2>c\end{math}の時交点\begin{math}t\end{math}は
+
+\begin{align*}
+  交点t = -b \pm \sqrt{b^2 - c}\\
+\end{align*}
+
+となる
+\end{document}
