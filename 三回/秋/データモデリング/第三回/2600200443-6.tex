@@ -1,0 +1,140 @@
+\documentclass[dvipdfmx,autodetect-engine,titlepage]{jsarticle}
+\usepackage[dvipdfm]{graphicx}
+\usepackage{ascmac}
+\usepackage{fancybox}
+\usepackage{listings}
+\usepackage{plistings}
+\usepackage{itembkbx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{svg}
+\usepackage{url}
+\usepackage{graphics}
+\usepackage{multirow}
+\usepackage{listings,jvlisting}
+
+\textheight=23cm
+\renewcommand{\figurename}{図}
+\renewcommand{\tablename}{表}
+\newenvironment{code}
+{\vspace{0.5zw}\VerbatimEnvironment  
+\begin{screen} 
+\baselineskip=1.0\normalbaselineskip
+ \begin{Verbatim}}
+{\end{Verbatim}
+\baselineskip=\normalbaselineskip
+ \end{screen}\vspace{0.5zw}} 
+
+\title{情報理工学部　SNコース 3回\\
+第3回レポート(SVM)\\}
+\author{2600200443-6\\Yamashita Kyohei\\山下 恭平}
+\date{Nov 18 2022}
+
+\begin{document}
+
+\maketitle
+
+\section*{問題}
+
+\begin{align*}
+  \overrightarrow{x}_1 
+    =
+  \begin{pmatrix}
+    0 \\
+    1  
+  \end{pmatrix}
+  ,
+  \overrightarrow{x}_2 
+    =
+  \begin{pmatrix}
+    1 \\
+    1  
+  \end{pmatrix}
+  ,
+  D = \left\{(\overrightarrow{x}_1,-1) , (\overrightarrow{x}_2 , 1)\right\} 
+\end{align*}
+の時以下の問いに答えよ
+
+\subsection*{問1 以下の内積を計算せよ}
+
+\begin{align*}
+  (\overrightarrow{x}_1,\overrightarrow{x}_1) &= 1\\
+  (\overrightarrow{x}_1,\overrightarrow{x}_2) &= 1\\
+  (\overrightarrow{x}_2,\overrightarrow{x}_1) &= 1\\
+  (\overrightarrow{x}_2,\overrightarrow{x}_2) &= 2
+\end{align*}
+
+
+\subsection*{問2 未定乗数\begin{math}\alpha_1,\alpha_2\end{math}を使って，ラグランジュ関数を書け}
+
+\begin{align*}
+  L_D &= \sum_{i = 1}^{2} \alpha_i - \frac{1}{2}\sum_{i = 1}^{2} \sum_{k = 1}^{2} \alpha_i \alpha_k y_i y_k(\overrightarrow{x}_i , \overrightarrow{x}_k)\\
+      &= (\alpha_1 + \alpha_2) - \frac{1}{2}\left\{\alpha_1 \alpha_1 y_1 y_1 (\overrightarrow{x}_1 , \overrightarrow{x}_1) + \alpha_1 \alpha_2 y_1 y_2 (\overrightarrow{x}_1 , \overrightarrow{x}_2)
+        + \alpha_2 \alpha_1 y_2 y_1 (\overrightarrow{x}_2 , \overrightarrow{x}_1) + \alpha_2 \alpha_2 y_2 y_2 (\overrightarrow{x}_2 , \overrightarrow{x}_2)\right\} \\
+      &= (\alpha_1 + \alpha_2) - \frac{1}{2}(\alpha_1^2 y_1^2 + 2\alpha_1 \alpha_2 y_1 y_2 + 2\alpha_2^2 y_2^2)
+\end{align*}
+
+\subsection*{問3 KKT 条件のうちの式 (5) をつかって，未定定数の関係を示せ}
+
+\begin{align*}
+  \sum_{i = 1}^{\infty} \alpha_i y_i &= 0\\
+\end{align*}
+
+より
+
+\begin{align*}
+  \alpha_1 y_1 &+ \alpha_2 y_2 = 0\\
+  \alpha_2 &= -\frac{y_1}{y_2}\alpha_1
+\end{align*}
+
+\subsection*{問4 問2と問3の結果から,\begin{math}\alpha_2\end{math}を消去し,簡潔化されたラグランジュ関数を書け}
+
+問2,問3より
+
+\begin{align*}
+  L_D = (1 - \frac{y_1}{y_2})\alpha_1 - \frac{1}{2}\alpha_1^2 y_1^2
+\end{align*}
+
+\subsection*{問5 偏微分の結果が0であることを用いて,\begin{math}\alpha_1,\alpha_2\end{math}を求めよ}
+
+\begin{align*}
+  \frac{\partial}{\partial \alpha_1}\{ (1 - \frac{y_1}{y_2})\alpha_1 - \frac{1}{2}\alpha_1^2 y_1^2 \}  &= 0\\
+  -\alpha_1 y_1^2 - \frac{y_1}{y_2} + 1 = 0\\
+  \alpha_1 = \frac{1}{y_1^2} - \frac{1}{y_1 y_2}
+\end{align*}
+
+よって
+
+\begin{align*}
+  \alpha_2 = -\frac{1}{y_2^2} + \frac{1}{y_1 y_2}
+\end{align*}
+
+\subsection*{問6 式(2)より,\begin{math}\overrightarrow{w}^*\end{math}を求めよ}
+
+式(2)より
+
+\begin{align*}
+  \overrightarrow{w} &= \alpha_1 y_1 \overrightarrow{x}_1 + \alpha_2 y_2 \overrightarrow{x}_2\\
+  &= (\frac{1}{y_1^2} - \frac{1}{y_1 y_2}) y_1   
+  \begin{pmatrix}
+    0 \\
+    1  
+  \end{pmatrix}
+  +
+  (-\frac{1}{y_2^2} + \frac{1}{y_1 y_2}) y_2 
+  \begin{pmatrix}
+    1 \\
+    1  
+  \end{pmatrix}\\
+  &= 
+  \begin{pmatrix}
+    \frac{1}{y_1} - \frac{1}{y_2} \\\\
+    \frac{2}{y_1} - \frac{2}{y_2}
+  \end{pmatrix}
+\end{align*}
+
+\subsection*{問7 式(3)より,bを求めよ}
+
+
+\end{document}
