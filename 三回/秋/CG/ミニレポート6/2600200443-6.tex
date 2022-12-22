@@ -1,0 +1,71 @@
+\documentclass[dvipdfmx,autodetect-engine,titlepage]{jsarticle}
+\usepackage[dvipdfm]{graphicx}
+\usepackage{ascmac}
+\usepackage{fancybox}
+\usepackage{listings}
+\usepackage{plistings}
+\usepackage{itembkbx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{svg}
+\usepackage{url}
+\usepackage{graphics}
+\usepackage{multirow}
+\usepackage{listings,jvlisting}
+
+\textheight=23cm
+\renewcommand{\figurename}{図}
+\renewcommand{\tablename}{表}
+\newenvironment{code}
+{\vspace{0.5zw}\VerbatimEnvironment  
+\begin{screen} 
+\baselineskip=1.0\normalbaselineskip
+ \begin{Verbatim}}
+{\end{Verbatim}
+\baselineskip=\normalbaselineskip
+ \end{screen}\vspace{0.5zw}} 
+
+\title{情報理工学部　SNコース 3回\\
+第6回ミニレポート\\}
+\author{2600200443-6\\Yamashita Kyohei\\山下 恭平}
+\date{Dec 22 2022}
+
+\begin{document}
+
+\maketitle
+
+\section*{問題}
+白色の光源光 I = (1, 1, 1) が,入射角60度で,拡散反射係数 (0.8, 0, 0.6), 鏡面反射係数 (0.5, 0.5, 0.5)の平面に入射した. 環境光は Ia = (0.4, 0.4, 0.4)とする。以下の問に答えよ.
+
+\subsection*{問1 光源光に由来する拡散反射光のR, G, B 成分を求めよ.}
+
+光源光なので
+\begin{align*}
+  J_d^{(R)} &= 0.8 \times \cos 60^\circ = 0.4 \\
+  J_d^{(G)} &= 0 \\
+  J_d^{(B)} &= 0.6 \times \cos 60^\circ = 0.3 \\
+\end{align*}
+
+\subsection*{問2 環境光に由来する拡散反射光の R, G, B 成分を求めよ. (ただし，光源光と環境光で，考えている平面の拡散反射 係数は同じであるとする.)}
+
+環境光なので
+\begin{align*}
+  J_d^{(R)} &= 0.8 \times 0.4 = 0.32 \\
+  J_d^{(G)} &= 0 \\
+  J_d^{(B)} &= 0.6 \times 0.4= 0.24 \\
+\end{align*}
+
+\subsection*{問3 鏡面反射光が最も強くなる視点位置での鏡面反射光の R, G, B成分を求めよ.}
+
+鏡面反射光かつ、最も強くなる視点なので
+
+\begin{align*}
+  \alpha = 0 \\
+  J_d^{(R)} &= 0.5 \times 1.0 \times 1.0 = 0.5 \\
+  J_d^{(G)} &= 0.5 \times 1.0 \times 1.0 = 0.5 \\
+  J_d^{(B)} &= 0.5 \times 1.0 \times 1.0 = 0.5 \\
+\end{align*}
+
+
+\end{document}
