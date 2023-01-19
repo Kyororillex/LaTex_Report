@@ -254,37 +254,37 @@
 %% Font
 %%
 %% 
-\expandafter\let\csname JY1/mc/m/n/10\endcsname\relax
-\expandafter\let\csname JY1/gt/m/n/10\endcsname\relax
+\expandafter\let\csname JY2/mc/m/n/10\endcsname\relax
+\expandafter\let\csname JY2/gt/m/n/10\endcsname\relax
 %%%
-\DeclareFontShape{JT1}{gt}{m}{it}{<-> ssub*gt/m/n}{}
-\DeclareFontFamily{JT1}{mdg}{}
-\DeclareFontShape{JT1}{mdg}{m}{n}{<-> ssub*gt/m/n}{}
-\DeclareFontFamily{JT1}{gmb}{}
-\DeclareFontShape{JT1}{gmb}{m}{n}{<-> ssub*gt/m/n}{}
-\DeclareFontShape{JT1}{gmb}{bx}{n}{<-> ssub*gt/m/n}{}
-\DeclareFontFamily{JT1}{sg}{}
-\DeclareFontShape{JT1}{sg}{m}{n}{<-> ssub*gt/m/n}{}
-\DeclareFontShape{JT1}{sg}{bx}{n}{<-> ssub*gt/m/n}{}
-\DeclareFontFamily{JT1}{gbm}{}
-\DeclareFontShape{JT1}{gbm}{m}{n}{<-> ssub*gt/m/n}{}
-\DeclareFontShape{JT1}{gbm}{bx}{n}{<-> ssub*gt/m/n}{}
-\DeclareFontFamily{JT1}{jun}{}
-\DeclareFontShape{JT1}{jun}{b}{n}{<-> ssub*gt/m/n}{}
-\DeclareFontShape{JT1}{jun}{m}{n}{<-> ssub*gt/m/n}{}
-\DeclareFontShape{JT1}{jun}{bx}{n}{<-> ssub*gt/m/n}{}
-\DeclareFontShape{JT1}{mc}{m}{it}{<-> ssub*mc/m/n}{}
-\DeclareFontShape{JY1}{mc}{m}{it}{<-> ssub*mc/m/n}{}%% v1.4
+\DeclareFontShape{JT2}{gt}{m}{it}{<-> ssub*gt/m/n}{}
+\DeclareFontFamily{JT2}{mdg}{}
+\DeclareFontShape{JT2}{mdg}{m}{n}{<-> ssub*gt/m/n}{}
+\DeclareFontFamily{JT2}{gmb}{}
+\DeclareFontShape{JT2}{gmb}{m}{n}{<-> ssub*gt/m/n}{}
+\DeclareFontShape{JT2}{gmb}{bx}{n}{<-> ssub*gt/m/n}{}
+\DeclareFontFamily{JT2}{sg}{}
+\DeclareFontShape{JT2}{sg}{m}{n}{<-> ssub*gt/m/n}{}
+\DeclareFontShape{JT2}{sg}{bx}{n}{<-> ssub*gt/m/n}{}
+\DeclareFontFamily{JT2}{gbm}{}
+\DeclareFontShape{JT2}{gbm}{m}{n}{<-> ssub*gt/m/n}{}
+\DeclareFontShape{JT2}{gbm}{bx}{n}{<-> ssub*gt/m/n}{}
+\DeclareFontFamily{JT2}{jun}{}
+\DeclareFontShape{JT2}{jun}{b}{n}{<-> ssub*gt/m/n}{}
+\DeclareFontShape{JT2}{jun}{m}{n}{<-> ssub*gt/m/n}{}
+\DeclareFontShape{JT2}{jun}{bx}{n}{<-> ssub*gt/m/n}{}
+\DeclareFontShape{JT2}{mc}{m}{it}{<-> ssub*mc/m/n}{}
+\DeclareFontShape{JY2}{mc}{m}{it}{<-> ssub*mc/m/n}{}%% v1.4
 %
-\DeclareFontShape{JT1}{mc}{bx}{it}{<-> ssub*gt/m/n}{}%% v1.4
-\DeclareFontShape{JY1}{mc}{bx}{it}{<-> ssub*gt/m/n}{}%% v1.4
+\DeclareFontShape{JT2}{mc}{bx}{it}{<-> ssub*gt/m/n}{}%% v1.4
+\DeclareFontShape{JY2}{mc}{bx}{it}{<-> ssub*gt/m/n}{}%% v1.4
 
 
 %%%
-\DeclareFontShape{JT1}{mc}{m}{sc}{<-> ssub*mc/m/n}{}
-\DeclareFontShape{JY1}{mc}{m}{sc}{<-> ssub*mc/m/n}{}
+\DeclareFontShape{JT2}{mc}{m}{sc}{<-> ssub*mc/m/n}{}
+\DeclareFontShape{JY2}{mc}{m}{sc}{<-> ssub*mc/m/n}{}
 
-\DeclareFontShape{JY1}{mc}{m}{n}{<5>jis <6> jis
+\DeclareFontShape{JY2}{mc}{m}{n}{<5>jis <6> jis
  <7> s * [1.05571] jis
  <8> s * [1.01625] jis
  <9> s * [0.98556] jis
@@ -298,7 +298,7 @@
  <-> jis
  }{}
 %
-\DeclareFontShape{JY1}{gt}{m}{n}{<5>jisg <6> jisg
+\DeclareFontShape{JY2}{gt}{m}{n}{<5>jisg <6> jisg
  <7> s * [1.05571] jisg 
  <8> s * [1.01625] jisg 
  <9> s * [0.98556] jisg
@@ -512,24 +512,24 @@
 \ifDS@english
 \else
 %% FutoGo
- \DeclareFontFamily{JY1}{fgb}{}
- \DeclareFontShape{JY1}{fgb}{m}{n}{%
+ \DeclareFontFamily{JY2}{fgb}{}
+ \DeclareFontShape{JY2}{fgb}{m}{n}{%
  <-14> s *[0.961] FutoGoB101-Bold-J.tfm%
  <14-> s *[1] FutoGoB101-Bold-J.tfm%
  }{}
- \DeclareFontFamily{JT1}{fgb}{}
- \DeclareFontShape{JT1}{fgb}{m}{n}{%
+ \DeclareFontFamily{JT2}{fgb}{}
+ \DeclareFontShape{JT2}{fgb}{m}{n}{%
  <-> s *tmin10%
  }{}
 
 %% FutoMin
- \DeclareFontFamily{JY1}{fmb}{}
- \DeclareFontShape{JY1}{fmb}{m}{n}{%
+ \DeclareFontFamily{JY2}{fmb}{}
+ \DeclareFontShape{JY2}{fmb}{m}{n}{%
  <-14> s *[0.961] FutoMinA101-Bold-J.tfm%
  <14-> s *[1] FutoMinA101-Bold-J.tfm%
  }{}
- \DeclareFontFamily{JT1}{fmb}{}
- \DeclareFontShape{JT1}{fmb}{m}{n}{%
+ \DeclareFontFamily{JT2}{fmb}{}
+ \DeclareFontShape{JT2}{fmb}{m}{n}{%
  <-> s *tmin10%
  }{}
 \fi
@@ -1002,10 +1002,10 @@
 
 \def\SHUBETUfontJ{%
 \if@submit
-\fontsize{18\JQ}{0\h}\usefont{JY1}{gt}{m}{n}%
+\fontsize{18\JQ}{0\h}\usefont{JY2}{gt}{m}{n}%
 \selectfont%
 \else
-\fontsize{18\JQ}{0\h}\usefont{JY1}{fgb}{m}{n}%
+\fontsize{18\JQ}{0\h}\usefont{JY2}{fgb}{m}{n}%
 \selectfont%
 \fi
 }
@@ -1688,13 +1688,13 @@
 \def\jtitlefont{%
 \if@submit
    \fontsize{26\JQ}{34\h}
-   \usefont{JY1}{gt}{m}{n}%
+   \usefont{JY2}{gt}{m}{n}%
 %   \usefont{OT1}{ptm}{b}{n}%Times-Bold*
    \bfseries%
    \mathversion{bold}\selectfont%
 \else
    \fontsize{26\JQ}{34\h}
-   \usefont{JY1}{fmb}{m}{n}% FutoMin
+   \usefont{JY2}{fmb}{m}{n}% FutoMin
    \usefont{OT1}{ptm}{b}{n}%Times-Bold*
    \mathversion{bold}\selectfont%
 \let\ddash\titleddash%
@@ -1707,7 +1707,7 @@
 \if@submit
    \fontsize{10\JQ}{12\h}\normalfont\selectfont
 \else
-   \fontsize{10\JQ}{12\h}\usekanji{JY1}{gt}{m}{n}%
+   \fontsize{10\JQ}{12\h}\usekanji{JY2}{gt}{m}{n}%
    \useroman{OT1}{phv}{m}{n}\selectfont
 \fi}
 
@@ -4805,7 +4805,7 @@ $\langle$\nobreak{#2}\nobreak$\rangle$}
 
 
 \def\SHUBETUfontJ{%
-\fontsize{18\JQ}{0\h}\usefont{JY1}{fgb}{m}{n}%
+\fontsize{18\JQ}{0\h}\usefont{JY2}{fgb}{m}{n}%
 \selectfont%
 }
 
