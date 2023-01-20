@@ -84,7 +84,7 @@ AESの公募が行われた際に,NISTの示す条件を満たす暗号化方式
    \item Twofish
    \item Mars
   \end{itemize}
- \end{quote}
+\end{quote}
 
  この中からRijndaelが採用された理由としては,高い暗号強度に加え,処理負荷や計算の速さでも
  高い評価を得ていたからである.
@@ -132,11 +132,112 @@ SubBytesでは16byteごとに区切ったデータに対し,1byte単位で置換
 \subsection{TLSとは}
 
 TLSとは(Transport Layer Security)の略称であり,インターネット上で行われる
-コンピュータ同士がセキュリティが要求される通信を行うためのプロトコルである
+コンピュータ同士がセキュリティが要求される通信を行うためのプロトコルである.
+TLSはSSL(Secure Socket Layer)を基に標準化が行われており,SSL/TLSとも呼ばれる.
+やりとりされるデータを暗号化し盗聴,漏洩,改竄を防ぐとともに,証明書によって通信を行っている相手が
+正当なwebサイトの所収者であるかを判断し,なりすましを防ぐことができる.最も有名な使われ方の一つとして
+HTTPS(HTTP over SSL/TLS)が挙げられ,webブラウザの上部に表示される鍵のマークはHTTPSで通信を
+行っていることを示す.\begin{math}^{[7]}\end{math}
 
-\subsection{title}
+\subsection{作成の背景}
 
-\subsection{title}
+TLSの基となったSSLが初めてブラウザに実装されたのは1995年3月にリリースされたNetscape Navigator 1.1
+である.この時実装されたのはSSL2.0であり,SSL1.0についてはプロトコルに重大な欠陥が発見されたため,
+リリースされることはなかった.次にリリースされたSSL3.0がTLSの基となっており,1995年リリースされた.
+現在ではTLS1.3までがリリースされており,SSL3.0については2014年に脆弱性が発見されたことから,
+RFC7568によってSSL 3.0の使用は禁止されている.
+
+\subsection{SSL/TLSの使用用途}
+
+SSL/TLSは非常に多くの場面で利用されている,以下の表1はその一覧である.
+
+\begin{table}[h]
+  \centering
+  \caption{over SSL/TLSが実装されてるプロトコル一覧}
+  \begin{tabular}{|c|c|}
+  \hline
+  SSLと組み合わせたプロトコル & 元のプロトコル \\ \hline \hline
+  HTTPS           & HTTP    \\ \hline
+  SMTPS           & SMTP    \\ \hline
+  LDAPS           & LDAP    \\ \hline
+  FTPS            & FTP     \\ \hline
+  IMAPS           & IMAP    \\ \hline
+  POP3S           & POP3    \\ \hline
+  \end{tabular}
+\end{table}
+
+この表から分かるように,webの閲覧をはじめファイル交換,メールの送受信など様々なサーバとの通信時
+にTLSが利用されている.
+
+\subsection{TLSハンドシェイクプロトコル}
+
+クライアントとサーバの間がTCPによって接続された後にTLSハンドシェイクによって
+通信の保護に取り掛かる.TLSハンドシェイクは大きく4つのフェーズに分けることができる.
+以下にその4フェーズを簡潔にまとめる.\begin{math}^{[8][9]}\end{math}\\
+
+\subsubsection*{第一フェーズ}
+第一のフェーズではサーバ・クライアント間で通信に必要情報の合意を図る.このフェーズでは,
+まずクライアントからサーバにClientHelloが送信され,次にサーバからクライアントにServerHello
+が送信される.
+
+\begin{enumerate}
+  \item ClientHello
+  \begin{itemize}
+    \item[] クライアントがサーバーに「Hello」というメッセージを送信することによってハンドシェイクを開始する.
+          これには,クライアントがサポートするTLSのバージョン,対応する暗号スイート,「クライアントランダム」
+          というランダムなバイト文字列が含まれている.
+  \end{itemize}
+  \item ServerHello
+  \begin{itemize}
+    \item[] Client Helloメッセージへの返答として,サーバーがメッセージを送信する.
+            これには,サーバーのSSL証明書,選んだ暗号スイート,サーバーが生成した別のバイト文字
+            列「サーバーランダム」が含まれている.
+  \end{itemize}
+\end{enumerate}
+
+
+\subsubsection*{第二フェーズ}
+
+\begin{enumerate}
+  \setcounter{enumi}{2}
+  \item 認証
+  \begin{itemize}
+    \item[] クライアントはサーバーのSSL証明書を発行元の認証局へ確認を行う.
+            これによってサーバーが自称する本人に間違いなく,クライアントはそのドメインの実際
+            の所有者とやりとりしていることを確認することができる.
+  \end{itemize}
+\end{enumerate}
+
+\subsubsection*{第三フェーズ}
+
+\begin{enumerate}
+  \setcounter{enumi}{3}
+  \item プレマスタシークレット
+  \begin{itemize}
+    \item[] クライアントは「プレマスタシークレット」と呼ばれるランダムなバイト文字列
+            をサーバへ送信する.この時,文字列はSSL証明書で得られた公開鍵で暗号化されており,
+            復号はサーバが保有する秘密鍵でのみ行うことができる.
+  \end{itemize}
+  \item セッションキーの生成
+  \begin{itemize}
+    \item[] サーバは送られてきたプレマスタシークレットを解読する.その後,
+            クライアントとサーバーは共にクライアントランダムとサーバーランダム,プレマスタ
+            ーシークレットからセッションキーを生成する.双方とも同じ結果となれば成功.
+  \end{itemize}
+\end{enumerate}
+
+\subsubsection*{第四フェーズ}
+
+\begin{enumerate}
+  \setcounter{enumi}{5}
+  \item 準備完了
+  \begin{itemize}
+    \item[] サーバ,クライアントの双方が準備完了の合図として「finished」を送信する.
+            これによってハンドシェイクが完了し,セッションキーを使用して通信が行われる.
+  \end{itemize}
+\end{enumerate}
+
+
 
 % 参考文献はここに記述
 \begin{thebibliography}{99}
@@ -150,6 +251,12 @@ TLSとは(Transport Layer Security)の略称であり,インターネット上�
       \url{https://xtech.nikkei.com/atcl/nxt/keyword/18/00002/030800119/} . (19/1/2023)
     \bibitem{暗号の基礎}笠原正雄・佐竹賢治.『誤り訂正符号と暗号の基礎数理』. コロナ社. 2021
     \bibitem{解説論文}金子敏信 , 共通鍵暗号の安全性評価 , 電子情報通信学会 基礎・境界ソサイエティ Fundamentals Review 7巻 , 2013
+    \bibitem{総務省}総務省. 国民のための情報セキュリティサイト.(19/1/2023) \\
+      \url{https://www.soumu.go.jp/main_sosiki/joho_tsusin/security_previous/kiso/k01_ssl.htm} 
+    \bibitem{Wiki}Wikipedia . Transport Layer Security. (19/1/2023)\\
+      \url{https://ja.wikipedia.org/wiki/Transport_Layer_Security} 
+    \bibitem{Cloudflare}Cloudflare . TLS/SSLハンドシェイクのプロセスは？ (19/1/2023)\\
+      \url{https://www.cloudflare.com/ja-jp/learning/ssl/what-happens-in-a-tls-handshake/#:~:text=TLS%E3%81%AF%E3%80%81%E3%82%A4%E3%83%B3%E3%82%BF%E3%83%BC%E3%83%8D%E3%83%83%E3%83%88%E9%80%9A%E4%BF%A1%E3%82%92,%E9%8D%B5%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%E5%90%88%E6%84%8F%E3%81%97%E3%81%BE%E3%81%99%E3%80%82} 
 
 \end{thebibliography}
 
