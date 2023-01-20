@@ -36,27 +36,103 @@
 \section{AES(Advanced Encryption Standard)}
 
 
-\subsection{共通鍵暗号/AES}
+\subsection{AESとは}
 
-AESとは「Advanced Encryption Standard」の略であり共通鍵暗号の一種である.
-AESはDaemenとRijimen の提案したRijndaelという暗号化アルゴリズムを基に開発された.
+AESとは「Advanced Encryption Standard」の略であり,アメリカが2000年に標準暗号と
+して定めた共通鍵暗号アルゴリズムのことである.現在,実用化されている方式の中では,
+強度が極めて高いといわれている.\begin{math}^{[1]}\end{math}
+
+\subsection{作成の背景}
+
+1977年に標準暗号として採用されたDES(Data Encryption Standard)にはいくつかの問題
+が存在していたため,アメリカ国立標準技術研究所(NIST)の主導によって1997年に新しい標準暗号の
+公募が行われた.そのため,「AES」は選出されなかった暗号も含む,手続き期間中から使われた
+「新しい標準暗号」の総称であり,選出された暗号化方式の名前はRijndael（ラインダール）である.\begin{math}
+  ^{[2]}
+\end{math}
+以下はNISTが公募した際の条件である
+
+\begin{quote}
+  \begin{itemize}
+   \item 詳細なアルゴリズム仕様を公開すること
+   \item ANSI C及びJavaによる実装を行うこと
+   \item 128,192,256ビットの3通りの鍵長を利用できること
+   \item ブロック長は128ビットであること
+  \end{itemize}
+ \end{quote}
+
+ アルゴリズムの詳細を公開することは,RC4の暗号化アルゴリズムが当時は非公開だったものの,
+ 1994年に何者かによってアルゴリズムが漏洩させられたことが背景にあると考えた.RC4は
+ 現在でも利用されているが,特定の使用法によっては解読可能であることが示されているので,
+ 利用する際は注意をする必要がある.また鍵長が128bitから始まっているのは,以前標準であった
+ DESは56bitの鍵長を採用しており,安全面においての不安要素が大きくなっていったからである.現在
+ DESを単体で使用することは安全でないとされており,Triple DESという異なる3種類の鍵を用いて
+ 3回暗号化する方法が新たに開発されたが,既に理論的攻撃方法が存在しており,NISTによって
+ 2030年までには使用をやめるように警告が出されている.\begin{math}^{[3]}\end{math}
 
 \subsection{Rijndael}
 
-\subsection{title}
+AESはJ.DaemenとV.Rijimen の提案したRijndaelという暗号化アルゴリズムを基に開発された.
+AESの公募が行われた際に,NISTの示す条件を満たす暗号化方式が15個あったとされ,その中でも
+優れた5方式が最終候補として残された,以下はその候補の一覧である.\begin{math}^{[2]}\end{math}
 
-RC4:1987年に開発、アルゴリズムは非公開であったが1994年に何者かによって漏洩させられ,2015年2月
-にはTLSのすべてのバージョンにおいてRC4の利用を禁止する提議 RFC 7465 \begin{math}
-  ^{[1]}
-\end{math}が公開された.
+\begin{quote}
+  \begin{itemize}
+   \item Rijndael
+   \item Serpent
+   \item RC6
+   \item Twofish
+   \item Mars
+  \end{itemize}
+ \end{quote}
 
-アメリカ国立標準技術研究所(NIST)
+ この中からRijndaelが採用された理由としては,高い暗号強度に加え,処理負荷や計算の速さでも
+ 高い評価を得ていたからである.
 
+ \subsection{暗号アルゴリズム}
+
+ AESが採用した暗号化アルゴリズムであるRijndaelについて簡単な解説を行う.まず図1
+ にAESのアルゴリズムを示す.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.4]{fig1.jpg}
+  \caption{暗号アルゴリズム(日経X TECH\begin{math}^{[4]}\end{math}より)}
+\end{figure}
+
+AESは4つのstepに分かれていることが確認できる.
+
+\begin{enumerate}
+  \item SubBytes(バイト交換)
+  \item ShiftRows(行シフト置換)
+  \item MixColumns(列変換)
+  \item AddRoundKey(鍵加算)
+\end{enumerate}
+
+SubBytesでは16byteごとに区切ったデータに対し,1byte単位で置換が行われる.
+次のShiftRowsではデータの各行に対して左巡回シフトを用いたデータ変換が行われる.
+そしてMixColumnsではデータの各列に対してのデータ変換を行い,行列演算が行われる.
+最後にAddRoundKeyでは,128ビット,192ビット,256ビットのいずれかの暗号鍵を基に
+生成した鍵(ラウンド鍵)で変換を行う.以上がAESにおける暗号化の一連の流れである,
+実際はこの演算が複数回繰り返して行われる.\begin{math}^{[4][5]}\end{math}
+
+\subsection{安全性}
+現在AESに対する最も有効的な攻撃の一つとしてBiclique攻撃が挙げられる.
+この攻撃を使用することで,攻撃に必要となる計算回数が,AES-128に対しては
+\begin{math}2^{126.1}\end{math}回,AES-192に対して\begin{math}2^{189.7}\end{math}回
+,AES-256に対し\begin{math}2^{254.4}\end{math}回である.この数字から分かるように、
+得られる計算削減量が僅かであることから,Biclique攻撃はAESにとって脅威となる攻撃では無い.
+よってAESは2021年1月現在では極めて安全性能の高い暗号であることが分かる.また,今後
+大きな計算削減を得られる攻撃手法が発見される可能性については専門家によっては懐疑的な
+意見を示しており,今後長きにわたって利用可能だと考えられる.\begin{math}^{[6]}\end{math}
 
 
 \section{TLS}
 
 \subsection{TLSとは}
+
+TLSとは(Transport Layer Security)の略称であり,インターネット上で行われる
+コンピュータ同士がセキュリティが要求される通信を行うためのプロトコルである
 
 \subsection{title}
 
@@ -64,11 +140,17 @@ RC4:1987年に開発、アルゴリズムは非公開であったが1994年に�
 
 % 参考文献はここに記述
 \begin{thebibliography}{99}
-    \bibitem{NVD CVSS}A complete guide to the common vulnerability scoring system.\\
-      \url{https://www.rfc-editor.org/rfc/rfc7465} . (15/12/2022)
-    \bibitem{main} Octavian Suciu , Connor Nelson , Zhuoer Lyu , Tiffany Bao , and Tudor Dumitras.
-    \quad Expected Exploitability: Predicting the Development of Functional Vulnerability 
-    Exploits. In 31th USENIX Security Symposium (USENIX Security 22), pages 377-394, 2022
+    \bibitem{Otsuka}大塚商会. AES. 
+      \url{https://mypage.otsuka-shokai.co.jp/contents/business-oyakudachi/words/aes.html} . (19/1/2023)
+    \bibitem{Wiki}Wikipedia . Advanced Encryption Standard .『結城 暗号技術入門 第3版(2003: 69-71)』\\
+      \url{https://ja.wikipedia.org/wiki/Advanced_Encryption_Standard#yuki2003} . (19/1/2023)
+    \bibitem{Wiki}Wikipedia . Data Encryption Standard.\\
+      \url{https://ja.wikipedia.org/wiki/Data_Encryption_Standard} . (19/1/2023)
+    \bibitem{日経X}日経X TECH. 3分でわかるAES. 齊藤 貴之. \\
+      \url{https://xtech.nikkei.com/atcl/nxt/keyword/18/00002/030800119/} . (19/1/2023)
+    \bibitem{暗号の基礎}笠原正雄・佐竹賢治.『誤り訂正符号と暗号の基礎数理』. コロナ社. 2021
+    \bibitem{解説論文}金子敏信 , 共通鍵暗号の安全性評価 , 電子情報通信学会 基礎・境界ソサイエティ Fundamentals Review 7巻 , 2013
+
 \end{thebibliography}
 
 \end{document}
